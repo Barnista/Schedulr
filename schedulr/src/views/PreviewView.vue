@@ -1,7 +1,7 @@
 <template>
     <div class="preview-view">
-        <CompPreview/>
-        <p>This is the preview view where you can see a preview of your component.</p>
+        <h1>PREVIEW DESCRIPTION & IMAGE</h1>
+        <CompPreview class="pb-5"/>
     </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
     components: {
         CompPreview
     },
+    mounted() {
+        // You can add any initialization logic here if needed
+    }
 };
 </script>
 

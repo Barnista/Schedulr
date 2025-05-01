@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PreviewView from '@/views/PreviewView.vue'
+import ModificationView from '@/views/ModificationView.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     name: 'preview',
     component: PreviewView
   },
+  {
+    path: '/modify',
+    name: 'modify',
+    component: ModificationView
+  }
 ]
 
 const router = createRouter({

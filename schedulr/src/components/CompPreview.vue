@@ -1,46 +1,39 @@
 <template>
-    <div class="comp-preview">
-        <div id="info-zone" class="info-zone">
+    <div class="comp-preview container d-flex flex-column justify-content-center align-items-center">
+
+        <textarea class="form-control mt-3" rows="8" v-model="formData.description"
+            placeholder="Description of the schedule...">
+                </textarea>
+
+        <div id="info-zone" class="mt-3 info-zone">
             <h1 class="title mt-3"><span class="title-color-1">TODAY'S</span> <span
                     class="title-color-2">SCHEDULE</span>
             </h1>
-            <ul class="list-group mt-3 px-5 custom-list">
-                <li class="list-group-item">
-                    <div class="d-flex flex-row">
-                        <img src="@/assets/covers/cover_gta4.jpg" class="mr-2 art-cover">
-                        <div class="ms-4 flex-grow-1 d-flex flex-column justify-content-center">
-                            <h2 class="title-time">5 - 6.30 PM</h2>
-                            <div class="divider"></div>
-                            <h2 class="title-program"
-                                style="color: #000; text-shadow: -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px 0 #fff;">
-                                GTA IV</h2>
+            <div class="mt-3 d-flex flex-column justify-content-center align-items-center"
+                style="height: calc(100% - 128px);">
+                <ul v-if="formData.programs.length > 0" class="list-group mt-3 px-5 custom-list">
+                    <li v-for="(program, index) in formData.programs" :key="index" class="list-group-item">
+                        <div class="d-flex flex-row">
+                            <img v-if="index % 2 == 0" :src="require(`@/assets/${program.program.cover}`)"
+                                class="mr-2 me-4 art-cover">
+                            <div class="flex-grow-1 d-flex flex-column justify-content-center">
+                                <h2 class="title-time">{{ program.start }} - {{ program.end }} {{ program.ampm }}</h2>
+                                <div class="divider"></div>
+                                <h2 class="title-program" :style="{ color: program.program.color }">{{
+                                    program.program.title }}</h2>
+                            </div>
+                            <img v-if="index % 2 == 1" :src="require(`@/assets/${program.program.cover}`)"
+                                class="mr-2 ms-4 art-cover">
                         </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="d-flex flex-row">
-                        <div class="me-4 flex-grow-1 d-flex flex-column justify-content-center">
-                            <h2 class="title-time">8.30 - 10 PM</h2>
-                            <div class="divider"></div>
-                            <h2 class="title-program" style="color: #ff9c00;">CIVILIZATION VI</h2>
-                        </div>
-                        <img src="@/assets/covers/cover_civ6.jpg" class="mr-2 art-cover">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="d-flex flex-row">
-                        <img src="@/assets/covers/cover_vscode.jpg" class="mr-2 art-cover">
-                        <div class="ms-4 flex-grow-1 d-flex flex-column justify-content-center">
-                            <h2 class="title-time">10 - 11.30 PM</h2>
-                            <div class="divider"></div>
-                            <h2 class="title-program" style="color: #009cff;">CODING</h2>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+                <p v-else class="fs-1 p-5 title-color-2 text-center">
+                    📅 NO PROGRAM TODAY. <br> STAY TUNED FOR MORE UPDATES! 🔔
+                </p>
+            </div>
         </div>
         <div class="pt-3">
-            <button class="btn btn-primary btn-lg mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
+            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
         </div>
     </div>
 </template>
@@ -50,6 +43,15 @@ import * as htmlToImage from 'html-to-image';
 
 export default {
     name: 'CompPreview',
+    data() {
+        return {
+            formData: sessionStorage.getItem('formData') ? JSON.parse(sessionStorage.getItem('formData')) : {
+                name: "",
+                description: "",
+                programs: [],
+            },
+        }
+    },
     methods: {
         saveAsImage() {
             //DOCS: https://www.npmjs.com/package/html-to-image
@@ -67,6 +69,12 @@ export default {
             // This can be implemented using libraries like html2canvas or similar
             console.log('Save as image functionality to be implemented.');
         }
+    },
+    mounted() {
+        // You can add any initialization logic here if needed
+        console.log("Session Storage Data:", this.formData); // If data is passed via session
+
+
     }
 };
 </script>
@@ -77,10 +85,6 @@ export default {
     src: url('@/assets/fonts/valorant.ttf') format('truetype');
 }
 
-.comp-preview {
-    font-family: 'Valorant', Arial, sans-serif;
-}
-
 .info-zone {
     background-color: #f0f0f0;
     width: 1000px;
@@ -89,6 +93,8 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     padding: 48px;
+    font-family: 'Valorant', Arial, sans-serif;
+
 }
 
 .title {
@@ -108,6 +114,7 @@ export default {
 }
 
 /* Add component-specific styles here */
+
 
 /* Custom styles for the list */
 .custom-list .list-group-item {
@@ -154,7 +161,7 @@ export default {
 }
 
 .title-time {
-    font-size: 72px;
+    font-size: 60px;
     font-weight: bold;
     color: #ffffff;
     /* Example color */
