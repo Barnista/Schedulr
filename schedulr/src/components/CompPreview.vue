@@ -4,20 +4,22 @@
         <textarea class="form-control mt-3" rows="8" v-model="formData.description"
             placeholder="Description of the schedule...">
                 </textarea>
-
-        <div id="info-zone" class="mt-3 info-zone">
+        <div class="my-3">
+            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
+        </div>
+        <div id="info-zone" class="info-zone">
             <h1 class="title mt-3"><span class="title-color-1">TODAY'S</span> <span
                     class="title-color-2">SCHEDULE</span>
             </h1>
-            <div class="mt-3 d-flex flex-column justify-content-center align-items-center"
-                style="height: calc(100% - 128px);">
+            <div class="programs-zone mt-3 d-flex flex-column justify-content-center align-items-center">
                 <ul v-if="formData.programs.length > 0" class="list-group mt-3 px-5 custom-list">
                     <li v-for="(program, index) in formData.programs" :key="index" class="list-group-item">
                         <div class="d-flex flex-row">
                             <img v-if="index % 2 == 0" :src="require(`@/assets/${program.program.cover}`)"
                                 class="mr-2 me-4 art-cover">
                             <div class="flex-grow-1 d-flex flex-column justify-content-center">
-                                <h2 class="title-time">{{ program.start }} - {{ program.end }} {{ program.ampm }}</h2>
+                                <h2 class="title-time">{{ program.start }} - {{ program.end }} {{ program.ampm }}
+                                </h2>
                                 <div class="divider"></div>
                                 <h2 class="title-program" :style="{ color: program.program.color }">{{
                                     program.program.title }}</h2>
@@ -32,9 +34,7 @@
                 </p>
             </div>
         </div>
-        <div class="pt-3">
-            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
-        </div>
+
     </div>
 </template>
 
@@ -94,7 +94,10 @@ export default {
     background-repeat: no-repeat;
     padding: 48px;
     font-family: 'Valorant', Arial, sans-serif;
+}
 
+.programs-zone {
+    height: calc(100% - 128px);
 }
 
 .title {
