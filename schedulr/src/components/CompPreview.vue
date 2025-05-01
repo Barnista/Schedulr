@@ -34,7 +34,9 @@
                 </p>
             </div>
         </div>
-
+        <div class="my-3">
+            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
+        </div>
     </div>
 </template>
 
