@@ -1,6 +1,6 @@
 {
   "name": "schedulr",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
+    "bootstrap-icons": "^1.11.3",
     "core-js": "^3.8.3",
     "html-to-image": "^1.11.13",
     "vue": "^3.2.13",

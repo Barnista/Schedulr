@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PreviewView from '@/views/PreviewView.vue'
-import ModificationView from '@/views/ModificationView.vue'
+import MakeScheduleView from '@/views/MakeScheduleView.vue'
 
 const routes = [
   {
@@ -23,9 +23,9 @@ const routes = [
     component: PreviewView
   },
   {
-    path: '/modify',
+    path: '/make-schedule',
     name: 'modify',
-    component: ModificationView
+    component: MakeScheduleView
   }
 ]
 

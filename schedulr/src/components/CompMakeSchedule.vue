@@ -1,7 +1,10 @@
 <template>
     <div class="comp-modify">
         <div class="d-flex flex-row-reverse">
-            <button @click="addItem" class="btn btn-success btn-lg mt-3">+ Add</button>
+            <!-- Add Button with Icon -->
+            <button @click="addItem" class="btn btn-success btn-lg mt-3">
+                <i class="bi bi-plus-circle me-2"></i> Add
+            </button>
         </div>
         <ul class="list-group mt-3">
             <li v-for="(program, index) in formData.programs" :key="index" class="list-group-item">
@@ -10,36 +13,36 @@
                         <label>Start At: </label>
                         <select v-model="program.start" class="form-select" aria-label="Default select example">
                             <option selected>Pick time</option>
-                            <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}
-                            </option>
+                            <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}</option>
                         </select>
                     </div>
                     <div class="form-group text-start me-3">
                         <label>End At: </label>
                         <select v-model="program.end" class="form-select" aria-label="Default select example">
                             <option selected>Pick time</option>
-                            <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}
-                            </option>
+                            <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}</option>
                         </select>
                     </div>
                     <div class="form-group text-start me-3">
                         <label>AM/PM: </label>
                         <select v-model="program.ampm" class="form-select" aria-label="Default select example">
                             <option selected>Pick AM/PM</option>
-                            <option v-for="(period, index) in ampm" :key="index" :value="period">{{ period }}
-                            </option>
+                            <option v-for="(period, index) in ampm" :key="index" :value="period">{{ period }}</option>
                         </select>
                     </div>
                     <div class="form-group text-start me-3">
                         <label>Program: </label>
                         <select v-model="program.program" class="form-select" aria-label="Default select example">
                             <option selected>Choose your program</option>
-                            <option v-for="(program, index) in programs" :key="index" :value="program">{{ program.title
-                                }}
+                            <option v-for="(program, index) in programs" :key="index" :value="program">
+                                {{ program.title }}
                             </option>
                         </select>
                     </div>
-                    <button @click="deleteItem(index)" class="btn btn-danger ms-auto">Delete</button>
+                    <!-- Delete Button with Icon -->
+                    <button @click="deleteItem(index)" class="btn btn-outline-secondary ms-auto">
+                        <i class="bi bi-trash me-2"></i> Delete
+                    </button>
                 </div>
             </li>
         </ul>
@@ -48,14 +51,17 @@
             <br> You can add multiple programs to your schedule.
         </p>
         <div class="px-5 mt-4">
-            <button @click="handleSubmit()" class="btn btn-primary btn-lg w-100 mt-3">Submit</button>
+            <!-- Submit Button with Icon -->
+            <button @click="handleSubmit()" class="btn btn-primary btn-lg w-100 mt-3">
+                <i class="bi bi-check-circle me-2"></i> Submit
+            </button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "CompModify",
+    name: "CompMakeSchedule",
     data() {
         return {
             timeranges: [
@@ -89,52 +95,64 @@ export default {
                     title: "Genshin Impact",
                     cover: "covers/cover_genshin.jpg",
                     color: "#128dff",
+                    style: { color: "#128dff" },
                 },
                 {
                     title: "Valorant",
                     cover: "covers/cover_valorant.webp",
                     color: "#ff5a5a",
+                    style: { color: "#ff5a5a" },
                 },
                 {
                     title: "Minecraft",
                     cover: "covers/cover_minecraft.jpg",
                     color: "#1dc13c",
+                    style: { color: "#1dc13c" },
                 },
                 {
                     title: "AC Shadows",
                     cover: "covers/cover_acshadows.png",
                     color: "#ff0000",
+                    style: { color: "#ff0000" },
                 },
                 {
                     title: "Civilization VI",
                     cover: "covers/cover_civ6.jpg",
                     color: "#ff9c00",
+                    style: { color: "#ff9c00" },
                 },
                 {
                     title: "GTA IV",
                     cover: "covers/cover_gta4.jpg",
-                    color: "#ffffff",
+                    color: "#000000",
+                    style: {
+                        color: "#000000",
+                        textShadow: "-2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff",
+                    },
                 },
                 {
                     title: "Just Chatting",
                     cover: "covers/cover_justchatting.jpg",
                     color: "#ffffff",
+                    style: { color: "#ffffff" },
                 },
                 {
                     title: "IRL",
                     cover: "covers/cover_irl.png",
                     color: "#ffffff",
+                    style: { color: "#ffffff" },
                 },
                 {
                     title: "Coding",
                     cover: "covers/cover_vscode.jpg",
                     color: "#009cff",
+                    style: { color: "#009cff" },
                 },
             ],
-            formData: {
+            formData: sessionStorage.getItem('formData') ? JSON.parse(sessionStorage.getItem('formData')) : {
                 name: "",
                 description: "",
-                programs: [], // Array to hold program data
+                programs: [],
             },
         };
     },
@@ -147,8 +165,6 @@ export default {
         },
         handleSubmit() {
             console.log("Form submitted:", this.formData);
-            // Add your logic here
-
             this.formData.description = this.generateDescription();
             sessionStorage.setItem("formData", JSON.stringify(this.formData));
             this.$router.push({
@@ -158,7 +174,7 @@ export default {
         generateDescription() {
             let description = ``;
 
-            if(this.formData.programs.length == 0) {
+            if (this.formData.programs.length == 0) {
                 description = `แชทวันนี้ไม่มีรายการ live stream\n\n`;
                 description += `เนื่องจาก....`;
                 return description;

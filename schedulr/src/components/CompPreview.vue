@@ -1,11 +1,13 @@
 <template>
     <div class="comp-preview container d-flex flex-column justify-content-center align-items-center">
 
-        <textarea class="form-control mt-3" rows="8" v-model="formData.description"
+        <textarea class="form-control fs-5 mt-3" rows="8" v-model="formData.description"
             placeholder="Description of the schedule...">
                 </textarea>
         <div class="my-3">
-            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
+            <button class="btn btn-success btn-lg fw-bold mt-3 d-flex align-items-center" @click="saveAsImage">
+                <i class="bi bi-cloud-download me-2"></i> SAVE AS IMAGE FILE
+            </button>
         </div>
         <div id="info-zone" class="info-zone">
             <h1 class="title mt-3"><span class="title-color-1">TODAY'S</span> <span
@@ -21,7 +23,7 @@
                                 <h2 class="title-time">{{ program.start }} - {{ program.end }} {{ program.ampm }}
                                 </h2>
                                 <div class="divider"></div>
-                                <h2 class="title-program" :style="{ color: program.program.color }">{{
+                                <h2 class="title-program" :style="program.program.style">{{
                                     program.program.title }}</h2>
                             </div>
                             <img v-if="index % 2 == 1" :src="require(`@/assets/${program.program.cover}`)"
@@ -35,7 +37,9 @@
             </div>
         </div>
         <div class="my-3">
-            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">SAVE AS IMAGE FILE</button>
+            <button class="btn btn-success btn-lg fw-bold mt-3" @click="saveAsImage">
+                <i class="bi bi-cloud-download me-2"></i> SAVE AS IMAGE FILE
+            </button>
         </div>
     </div>
 </template>

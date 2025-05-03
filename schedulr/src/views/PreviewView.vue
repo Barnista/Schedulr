@@ -1,35 +1,25 @@
 <template>
-    <div class="preview-view">
-        <h1>PREVIEW DESCRIPTION & IMAGE</h1>
-        <CompPreview class="pb-5"/>
+    <div class="preview-view container py-5">
+      <h1 class="text-center mb-4">Preview Your Schedule</h1>
+      <CompPreview />
     </div>
-</template>
-
-<script>
-import CompPreview from '@/components/CompPreview.vue';
-
-export default {
+  </template>
+  
+  <script>
+  import CompPreview from '@/components/CompPreview.vue';
+  
+  export default {
     name: "PreviewView",
     components: {
-        CompPreview
+      CompPreview,
     },
-    mounted() {
-        // You can add any initialization logic here if needed
-    }
-};
-</script>
-
-<style scoped>
-.preview-view {
+  };
+  </script>
+  
+  <style scoped>
+  .preview-view {
+    background-color: #f8f9fa;
+    border-radius: 8px;
     padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    color: #333;
-}
-
-p {
-    color: #666;
-}
-</style>
+  }
+  </style>
