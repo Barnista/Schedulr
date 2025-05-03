@@ -34,7 +34,7 @@
       <p>Developed by <strong>barnista27</strong></p>
       <p>
         This project is proudly <strong>open-source</strong>. You can fork it and contribute on
-        <a href="https://github.com/barnista27/schedulr" target="_blank" class="text-primary">
+        <a href="https://github.com/Barnista/Schedulr" target="_blank" class="text-primary">
           <i class="bi bi-github me-1"></i>GitHub
         </a>.
       </p>
@@ -55,7 +55,7 @@
       <a href="https://discord.gg/SKpzUwWp" target="_blank" class="btn btn-outline-secondary me-2">
         <i class="bi bi-discord"></i> Discord
       </a>
-      <a href="https://github.com/barnista27/schedulr" target="_blank" class="btn btn-outline-dark">
+      <a href="https://github.com/Barnista/Schedulr" target="_blank" class="btn btn-outline-dark">
         <i class="bi bi-github"></i> GitHub
       </a>
     </div>
