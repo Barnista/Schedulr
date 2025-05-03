@@ -27,7 +27,8 @@
       <a href="https://x.com/barnista27" target="_blank" class="btn btn-outline-primary me-2">
         <i class="bi bi-twitter"></i> X
       </a>
-      <a href="https://www.facebook.com/profile.php?id=61574757156088" target="_blank" class="btn btn-outline-primary me-2">
+      <a href="https://www.facebook.com/profile.php?id=61574757156088" target="_blank"
+        class="btn btn-outline-primary me-2">
         <i class="bi bi-facebook"></i> Facebook
       </a>
       <a href="https://discord.gg/SKpzUwWp" target="_blank" class="btn btn-outline-secondary me-2">
@@ -36,6 +37,16 @@
       <a href="https://github.com/barnista27/schedulr" target="_blank" class="btn btn-outline-dark">
         <i class="bi bi-github"></i> GitHub
       </a>
+    </div>
+
+    <!-- Example Deployment on Home Server -->
+    <div class="mt-4">
+      <p class="text-muted">
+        Example deployment on home server:
+        <a href="http://wanchaem.3bbddns.com:29401/" target="_blank" class="text-primary">
+          <i class="bi bi-link-45deg me-1"></i>Schedulr
+        </a>
+      </p>
     </div>
   </div>
 </template>
