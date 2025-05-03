@@ -173,7 +173,7 @@ export default {
 }
 
 .title-program {
-    font-size: 72px;
+    font-size: 60px;
     font-weight: bold;
     color: #ffffff;
     /* Example color */
