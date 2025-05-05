@@ -37,7 +37,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p class="mb-0">v0.3.2 © 2025 Schedulr. All Rights Reserved.</p>
+      <p class="mb-0">v0.3.3 © 2025 Schedulr. All Rights Reserved.</p>
     </footer>
   </div>
 </template>
