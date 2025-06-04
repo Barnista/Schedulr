@@ -1,4 +1,6 @@
 const modelTimeranges = [
+    "00:00",
+    "00:30",
     "1:00",
     "1:30",
     "2:00",
@@ -21,7 +23,8 @@ const modelTimeranges = [
     "10:30",
     "11:00",
     "11:30",
-    "12:00"
+    "12:00",
+    "12:30",
 ];
 
 export default modelTimeranges;

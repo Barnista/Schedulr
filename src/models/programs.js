@@ -1,6 +1,12 @@
 // /schedulr/src/models/programs.js
 const modelPrograms = [
     {
+        title: "Delta Force",
+        cover: "covers/cover_deltaforce.jpg",
+        color: "#0ff796",
+        style: { color: "#0ff796" },
+    },
+    {
         title: "Genshin Impact",
         cover: "covers/cover_genshin.jpg",
         color: "#128dff",
