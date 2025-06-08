@@ -46,6 +46,23 @@ const modelPrograms = [
         },
     },
     {
+        title: "Battlefield 4",
+        cover: "covers/cover_bf4.png",
+        color: "#ffffff",
+        style: {
+            color: "#ffffff",
+            textShadow: "1px 2px 16px deepskyblue",
+        },
+    },
+    {
+        title: "Metal Gear Rising",
+        cover: "covers/cover_mgr.jpg",
+        color: "#00ffff",
+        style: {
+            color: "#00ffff",
+        },
+    },
+    {
         title: "Just Chatting",
         cover: "covers/cover_justchatting.jpg",
         color: "#ffffff",
