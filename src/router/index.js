@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PreviewView from '@/views/PreviewView.vue'
 import MakeScheduleView from '@/views/MakeScheduleView.vue'
+import MakeSchedule2View from '@/views/MakeSchedule2View.vue'
+import SignInView from '@/views/SignInView.vue'
 
 const routes = [
   {
@@ -24,8 +26,18 @@ const routes = [
   },
   {
     path: '/make-schedule',
-    name: 'modify',
+    name: 'make-schedule',
     component: MakeScheduleView
+  },
+  {
+    path: '/live-schedule',
+    name: 'live-schedule',
+    component: MakeSchedule2View
+  },
+  {
+    path: '/sign-in',
+    name: 'sign-in',
+    component: SignInView
   }
 ]
 

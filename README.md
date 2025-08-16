@@ -11,3 +11,7 @@ Ex. deployment on GitHub Pages (ยังไม่เวิร์ค ใคร�
 How to utilize Open-AI (cookbook):
 https://github.com/openai/openai-cookbook/blob/main/articles/techniques_to_improve_reliability.md
 
+
+Packages installed:
+[Vue TOAST UI Calendar](https://github.com/lkmadushan/vue-tuicalendar)
+

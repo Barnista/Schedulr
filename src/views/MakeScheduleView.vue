@@ -1,5 +1,5 @@
 <template>
-  <div class="modification-view container py-5">
+  <div class="modification-view container py-5 bg-light">
     <h1 class="text-center mb-4">Make Your Schedule</h1>
     <div class="comp-modify">
       <div class="d-flex flex-row-reverse">
@@ -105,7 +105,6 @@ export default {
 
 <style scoped>
 .modification-view {
-  background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
 }

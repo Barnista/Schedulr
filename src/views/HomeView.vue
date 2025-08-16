@@ -1,16 +1,21 @@
 <template>
   <div class="home text-center py-5">
-    <h1 class="display-4">Welcome to Schedulr</h1>
-    <p class="lead">Plan your day with ease and style.</p>
+    <h1 class="display-4">Welcome to Schedulr 2</h1>
+    <p class="lead">Plan your whole months with ease and style.</p>
     <div class="info mt-2">
-      <router-link to="/make-schedule" class="btn btn-primary btn-lg mt-4">
-        <i class="bi bi-pencil-square me-2"></i>Get Started
+      <router-link to="/live-schedule" class="btn btn-primary btn-lg shadow-lg">
+        <i class="bi bi-calendar-heart me-2"></i>Barnista's LIVE Schedule
+      </router-link>
+    </div>
+    <div>
+      <router-link to="/make-schedule" class="btn btn-outline-secondary btn-lg">
+        <i class="bi bi-pencil-square me-2"></i>DIY Schedule
       </router-link>
     </div>
 
     <!-- Credits Section -->
     <div class="credits mt-5 text-muted">
-      <p>Developed by <strong>barnista27</strong></p>
+      <p>Developed by <strong>Barnista</strong></p>
       <p>
         This project is proudly <strong>open-source</strong>. You can fork it and contribute on
         <a href="https://github.com/Barnista/Schedulr" target="_blank" class="text-primary">
@@ -31,7 +36,7 @@
         class="btn btn-outline-primary me-2">
         <i class="bi bi-facebook"></i> Facebook
       </a>
-      <a href="https://discord.gg/SKpzUwWp" target="_blank" class="btn btn-outline-secondary me-2">
+      <a href=" https://discord.gg/GSZeRZaVZb" target="_blank" class="btn btn-outline-secondary me-2">
         <i class="bi bi-discord"></i> Discord
       </a>
       <a href="https://github.com/Barnista/Schedulr" target="_blank" class="btn btn-outline-dark">
@@ -42,9 +47,9 @@
     <!-- Example Deployment on Home Server -->
     <div class="mt-4">
       <p class="text-muted">
-        Example deployment on home server:
-        <a href="http://wanchaem.3bbddns.com:29401/" target="_blank" class="text-primary">
-          <i class="bi bi-link-45deg me-1"></i>Schedulr
+        Example deployment on Firebase Hosting:
+        <a href="https://barnista-schedulr.web.app/" target="_blank" class="text-primary">
+          <i class="bi bi-link-45deg me-1"></i>Schedulr 2
         </a>
       </p>
     </div>
@@ -52,8 +57,12 @@
 </template>
 
 <script>
+
 export default {
   name: "HomeView",
+  components: {
+
+  }
 };
 </script>
 
