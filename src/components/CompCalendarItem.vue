@@ -133,7 +133,7 @@ export default {
                     link.href = dataUrl;
                     link.click();
 
-                    infoZone.classList.remove(['bg-banner']);
+                    infoZone.classList.remove(['bg-banner-2']);
                 });
 
             // Logic to save the component as an image file
