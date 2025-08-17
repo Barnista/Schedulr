@@ -3,7 +3,7 @@
     <h1 class="display-4">Welcome to Schedulr 2</h1>
     <p class="lead">Plan your whole months with ease and style.</p>
     <div class="info mt-2">
-      <router-link to="/live-schedule" class="btn btn-primary btn-lg shadow-lg">
+      <router-link to="/live-schedule" class="btn btn-light bg-fabulous btn-lg shadow-lg">
         <i class="bi bi-calendar-heart me-2"></i>Barnista's LIVE Schedule
       </router-link>
     </div>
@@ -29,15 +29,18 @@
       <a href="https://www.youtube.com/@barnista27" target="_blank" class="btn btn-outline-danger me-2">
         <i class="bi bi-youtube"></i> YouTube
       </a>
-      <a href="https://x.com/barnista27" target="_blank" class="btn btn-outline-primary me-2">
-        <i class="bi bi-twitter"></i> X
+      <a href="https://www.tiktok.com/@barnista27" target="_blank" class="btn btn-outline-dark me-2">
+        <i class="bi bi-tiktok"></i> TikTok
+      </a>
+      <a href="https://x.com/barnista27" target="_blank" class="btn btn-outline-dark me-2">
+        <i class="bi bi-twitter-x"></i> X (Twitter)
+      </a>
+      <a href=" https://discord.gg/GSZeRZaVZb" target="_blank" class="btn btn-outline-primary me-2">
+        <i class="bi bi-discord"></i> Discord
       </a>
       <a href="https://www.facebook.com/profile.php?id=61574757156088" target="_blank"
         class="btn btn-outline-primary me-2">
         <i class="bi bi-facebook"></i> Facebook
-      </a>
-      <a href=" https://discord.gg/GSZeRZaVZb" target="_blank" class="btn btn-outline-secondary me-2">
-        <i class="bi bi-discord"></i> Discord
       </a>
       <a href="https://github.com/Barnista/Schedulr" target="_blank" class="btn btn-outline-dark">
         <i class="bi bi-github"></i> GitHub
@@ -52,6 +55,11 @@
           <i class="bi bi-link-45deg me-1"></i>Schedulr 2
         </a>
       </p>
+    </div>
+    <div>
+      <router-link to="/about">
+        About Us & Contributors.
+      </router-link>
     </div>
   </div>
 </template>

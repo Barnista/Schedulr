@@ -1,6 +1,6 @@
 <template>
-    <div class="live-schedule-view bg-light">
-        <CompCalendarItem class="mt-4" />
+    <div class="live-schedule-view bg-banner">
+        <CompCalendarItem />
     </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     components: {
         CompCalendarItem
     },
-    created(){
+    created() {
         //this.validateSignIn();
     },
     methods: {
@@ -28,3 +28,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.bg-banner {
+    background-image: url('@/assets/bg/bannerv2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>

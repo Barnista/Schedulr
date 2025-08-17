@@ -1,7 +1,7 @@
 <template>
     <div class="sign-in-view">
         <div class="sign-in-panel rounded border shadow-lg p-4 pb-5 mt-5">
-            <h2 class="mb-3">Sign In</h2>
+            <h2 class="mb-3">Admin Sign In</h2>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" v-model="email" class="form-control" id="exampleInputEmail1"
@@ -22,7 +22,6 @@
 
 <script>
 import router from '@/router';
-import { defaultAuth } from '@/services/firebase-lib';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getCurrentUser } from 'vuefire';
 
@@ -49,7 +48,7 @@ export default {
         },
         signIn() {
             const auth = getAuth();
-            signInWithEmailAndPassword(auth, defaultAuth.email, defaultAuth.password).then(() => {
+            signInWithEmailAndPassword(auth, this.email, this.password).then(() => {
                 console.log('sign in success');
                 router.push({ name: 'home' }).then(() => {
                     //force reload

@@ -46,7 +46,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p class="mb-0">v2.0.0 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
+      <p class="mb-0">v2.1.0 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
           About Us.
         </router-link></p>
     </footer>
@@ -98,5 +98,26 @@ body {
 
 footer {
   margin-top: auto;
+}
+
+.bg-fabulous {
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #4a90e2, #ff8a00);
+    background-size: 400% 400%;
+    animation: gradient-flash 8s linear infinite;
+    color: #fff !important;
+}
+
+@keyframes gradient-flash {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 </style>

@@ -1,20 +1,21 @@
 <template>
     <div class="comp-calendar-item">
         <div class="d-flex justify-content-center">
-            <div id="info-zone" class="pb-4 pe-4 ps-3 pb-xl-5 pe-xl-5 ps-xl-5 bg-light">
+            <div id="info-zone" class="pb-4 pe-4 ps-3 pt-3 pb-xl-5 pe-xl-5 ps-xl-4 pt-xl-4">
                 <h1 class="title text-center"><span class="title-color-1">BARNISTA'S</span> <span
-                        class="title-color-2">SCHEDULE</span>
-                    <span class="title-color-3"> - {{ currentMonthName.toUpperCase() }} ({{ currentMonthNumber }})</span>
+                        class="title-color-2">SCHEDULE - </span>
+                    <span class="title-color-3"> {{ currentMonthName.toUpperCase() }} ({{ currentMonthNumber
+                        }})</span>
                 </h1>
                 <div class="mb-3 text-center">
-                    <button class="btn btn-sm me-2"
-                        :class="[(viewMode == viewTypes.day) ? 'btn-danger' : 'btn-outline-danger']"
+                    <button class="btn btn-sm me-2 shadow-sm"
+                        :class="[(viewMode == viewTypes.day) ? 'btn-outline-light bg-fabulous fw-bold' : 'btn-warning']"
                         @click="changeView(viewTypes.day)">DAILY</button>
-                    <button class="btn btn-sm me-2"
-                        :class="[(viewMode == viewTypes.week) ? 'btn-danger' : 'btn-outline-danger']"
+                    <button class="btn btn-sm me-2 shadow-sm"
+                        :class="[(viewMode == viewTypes.week) ? 'btn-outline-light bg-fabulous fw-bold' : 'btn-warning']"
                         @click="changeView(viewTypes.week)">WEEKLY</button>
-                    <button class="btn btn-sm me-2"
-                        :class="[(viewMode == viewTypes.month) ? 'btn-danger' : 'btn-outline-danger']"
+                    <button class="btn btn-sm me-2 shadow-sm"
+                        :class="[(viewMode == viewTypes.month) ? 'btn-outline-light bg-fabulous fw-bold' : 'btn-warning']"
                         @click="changeView(viewTypes.month)">THIS MONTH - {{ currentMonthName.toUpperCase() }} ({{
                             currentMonthNumber }})</button>
                 </div>
@@ -24,7 +25,7 @@
             </div>
         </div>
         <div class="mb-5 text-center">
-            <button class="btn btn-outline-secondary shadow-sm" @click="saveAsImage">
+            <button class="btn btn-success shadow" @click="saveAsImage">
                 <i class="bi bi-cloud-download"></i>
                 SAVE AS IMAGE
             </button>
@@ -118,9 +119,10 @@ export default {
             //DOCS: https://www.npmjs.com/package/html-to-image
 
             // Convert the HTML element to an image
+            let infoZone = document.getElementById('info-zone');
+            infoZone.classList.add(['bg-banner']);
             htmlToImage
-                .toJpeg(document.getElementById('info-zone'), { quality: 0.95 })
-
+                .toJpeg(document.getElementById('info-zone'), { quality: 1.00 })
                 .then(function (dataUrl) {
                     var link = document.createElement('a');
                     const today = new Date();
@@ -129,6 +131,8 @@ export default {
                     link.download = `schedule_weekly_${formattedDate}`;
                     link.href = dataUrl;
                     link.click();
+
+                    infoZone.classList.remove(['bg-banner']);
                 });
 
             // Logic to save the component as an image file
@@ -187,10 +191,16 @@ export default {
     src: url('@/assets/fonts/valorant.ttf') format('truetype');
 }
 
+.bg-banner {
+    background-image: url('@/assets/bg/bannerbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 #info-zone {
     width: 100%;
-    max-width: 1320px;
-    height: 80vh;
+    max-width: 1200px;
+    height: 86vh;
 }
 
 .title {
@@ -200,21 +210,22 @@ export default {
 
 .full {
     width: 100%;
-    height: 84%;
+    height: 88%;
 }
 
 .title-color-1 {
-  color: #333333;
-  /* Example color */
+    color: #fff;
+    /* Example color */
 }
 
 .title-color-2 {
-  color: #ff3838;
-  /* Example color */
+    color: #fff;
+    /* Example color */
 }
 
 .title-color-3 {
-  color: #8c18af;
-  /* Example color */
+    color: #420d4f;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    /* Example color */
 }
 </style>
