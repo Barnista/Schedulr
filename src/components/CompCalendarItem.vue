@@ -120,7 +120,7 @@ export default {
 
             // Convert the HTML element to an image
             let infoZone = document.getElementById('info-zone');
-            infoZone.classList.add(['bg-banner']);
+            infoZone.classList.add(['bg-banner-2']);
             htmlToImage
                 .toJpeg(document.getElementById('info-zone'), { quality: 1.00 })
                 .then(function (dataUrl) {
@@ -192,7 +192,7 @@ export default {
     src: url('@/assets/fonts/valorant.ttf') format('truetype');
 }
 
-.bg-banner {
+.bg-banner-2 {
     background-image: url('@/assets/bg/bannerbg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
