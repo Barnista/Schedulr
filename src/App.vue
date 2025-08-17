@@ -46,7 +46,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p class="mb-0">v2.1.0 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
+      <p class="mb-0">v2.1.1 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
           About Us.
         </router-link></p>
     </footer>
