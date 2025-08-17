@@ -128,7 +128,8 @@ export default {
                     const today = new Date();
                     const formattedDate = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
                     // Set the download attribute with the formatted date
-                    link.download = `schedule_month_${this.currentMonthNumber}_${formattedDate}`;
+                    
+                    link.download = `schedule_month${today.getMonth()+1}_${formattedDate}`;
                     link.href = dataUrl;
                     link.click();
 
