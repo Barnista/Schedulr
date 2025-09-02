@@ -1,6 +1,9 @@
 <template>
   <div class="preview-view container py-5">
     <h1 class="text-center mb-4">Preview Your Schedule</h1>
+    <div class="w-100">
+      <CompEmojiKeyboard class="mt-3" />
+    </div>
     <div class="comp-preview container d-flex flex-column justify-content-center align-items-center">
       <textarea class="form-control fs-5 mt-3" rows="8" v-model="formData.description"
         placeholder="Description of the schedule...">
@@ -16,11 +19,7 @@
         <div class="programs-zone mt-3 d-flex flex-column justify-content-center align-items-center">
           <ul v-if="formData.programs.length > 0" class="list-group mt-3 px-5 custom-list">
             <li v-for="(program, index) in formData.programs" :key="index" class="list-group-item">
-                <CompProgramItem 
-                :key="index" 
-                :program="program" 
-                :index="index" 
-                />
+              <CompProgramItem :key="index" :program="program" :index="index" />
             </li>
           </ul>
           <p v-else class="fs-1 p-5 title-color-2 text-center">
@@ -39,13 +38,15 @@
 
 <script>
 import CompProgramItem from '@/components/CompProgramItem.vue';
+import CompEmojiKeyboard from '@/components/Keyboards/CompEmojiKeyboard.vue';
 import modelFormData from '@/models/formdata';
 import * as htmlToImage from 'html-to-image';
 
 export default {
   name: "PreviewView",
   components: {
-    CompProgramItem
+    CompProgramItem,
+    CompEmojiKeyboard
   },
   data() {
     return {

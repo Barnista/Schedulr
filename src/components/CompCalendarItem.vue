@@ -1,7 +1,7 @@
 <template>
     <div class="comp-calendar-item">
         <div class="d-flex justify-content-center">
-            <div id="info-zone" class="pb-4 pe-4 ps-3 pt-3 pb-xl-5 pe-xl-5 ps-xl-4 pt-xl-4">
+            <div id="info-calendar" class="pb-4 pe-4 ps-3 pt-3 pb-xl-5 pe-xl-5 ps-xl-4 pt-xl-4">
                 <h1 class="title text-center"><span class="title-color-1">BARNISTA'S</span> <span
                         class="title-color-2">SCHEDULE - </span>
                     <span class="title-color-3"> {{ currentMonthName.toUpperCase() }} ({{ currentMonthNumber
@@ -119,10 +119,10 @@ export default {
             //DOCS: https://www.npmjs.com/package/html-to-image
 
             // Convert the HTML element to an image
-            let infoZone = document.getElementById('info-zone');
+            let infoZone = document.getElementById('info-calendar');
             infoZone.classList.add(['bg-banner-2']);
             htmlToImage
-                .toJpeg(document.getElementById('info-zone'), { quality: 1.00 })
+                .toJpeg(document.getElementById('info-calendar'), { quality: 1.00 })
                 .then(function (dataUrl) {
                     var link = document.createElement('a');
                     const today = new Date();
@@ -198,7 +198,7 @@ export default {
     background-repeat: no-repeat;
 }
 
-#info-zone {
+#info-calendar {
     width: 100%;
     max-width: 1200px;
     height: 86vh;
