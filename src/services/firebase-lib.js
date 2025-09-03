@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { collection, getFirestore } from "firebase/firestore";
+import { collection, getFirestore, where } from "firebase/firestore";
+import { query } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,3 +31,13 @@ export const defaultAuth = {
 export const db = getFirestore(firebaseApp);
 
 export const refScheduleEvents = collection(db, 'schedule-events');
+
+export const refPrograms = collection(db, 'programs');
+
+export const getScheduleByDate = (startDate) => {
+    return query(
+        refScheduleEvents,
+        where('start', '>=', startDate),
+        where('start', '<=', startDate + '~')
+    );
+}

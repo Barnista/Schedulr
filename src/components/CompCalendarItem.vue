@@ -5,7 +5,7 @@
                 <h1 class="title text-center"><span class="title-color-1">BARNISTA'S</span> <span
                         class="title-color-2">SCHEDULE - </span>
                     <span class="title-color-3"> {{ currentMonthName.toUpperCase() }} ({{ currentMonthNumber
-                        }})</span>
+                    }})</span>
                 </h1>
                 <div class="mb-3 text-center">
                     <button class="btn btn-sm me-2 shadow-sm"
@@ -28,6 +28,11 @@
             <button class="btn btn-success shadow" @click="saveAsImage">
                 <i class="bi bi-cloud-download"></i>
                 SAVE AS IMAGE
+            </button>
+            <button v-if="viewMode == viewTypes.day && currentUser" class="btn btn-danger shadow ms-2"
+                @click="renderAsPreview">
+                <i class="bi bi-back"></i>
+                SEND TO PREVIEW
             </button>
         </div>
     </div>
@@ -115,6 +120,16 @@ export default {
                     this.currentMonthName = '';
             }
         },
+        renderAsPreview() {
+            const d = new Date();
+            const dStr = `${d.getFullYear()}-${(d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}-${d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+            //const dStr = `${d.getFullYear()}-${(d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+            this.$router.push({
+                name: 'preview', query: {
+                    date: dStr
+                }
+            })
+        },
         saveAsImage() {
             //DOCS: https://www.npmjs.com/package/html-to-image
 
@@ -128,8 +143,8 @@ export default {
                     const today = new Date();
                     const formattedDate = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
                     // Set the download attribute with the formatted date
-                    
-                    link.download = `schedule_month${today.getMonth()+1}_${formattedDate}`;
+
+                    link.download = `schedule_month${today.getMonth() + 1}_${formattedDate}`;
                     link.href = dataUrl;
                     link.click();
 

@@ -82,4 +82,25 @@ const modelPrograms = [
     },
 ];
 
-export default modelPrograms;
+export default {
+    generateDescription(programs) {
+        // Generate a description based on the form data
+        let description = ``;
+
+        if (programs.length == 0) {
+            description = `แชทวันนี้ไม่มีรายการ live stream\n\n`;
+            description += `เนื่องจาก....`;
+            return description;
+        }
+
+        description = `แชทวันนี้เรามีรายการ live stream\n\n`
+        programs.forEach((program) => {
+            description += `${program.start} - ${program.end} (UTC+7): ${program.title}\n`;
+        });
+        description += `\nYouTube: https://www.youtube.com/@barnista27`;
+        description += `\nTwitch: https://www.twitch.tv/barnista27`;
+
+        return description;
+    },
+    modelPrograms
+}

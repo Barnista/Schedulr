@@ -1,14 +1,14 @@
 <template>
     <div class="d-flex flex-row">
-        <img v-if="index % 2 == 0" :src="require(`@/assets/${program.program.cover}`)" class="mr-2 me-4 art-cover">
+        <img v-if="index % 2 == 0" :src="program.cover" class="mr-2 me-4 art-cover">
         <div class="flex-grow-1 d-flex flex-column justify-content-center">
-            <h2 class="title-time">{{ program.start }} - {{ program.end }} {{ program.ampm }}
+            <h2 class="title-time">{{ program.start }} - {{ program.end }}
             </h2>
             <div class="divider"></div>
-            <h2 class="title-program" :style="program.program.style">{{
-                program.program.title }}</h2>
+            <h2 class="title-program" :style="program.style">{{
+                program.title }}</h2>
         </div>
-        <img v-if="index % 2 == 1" :src="require(`@/assets/${program.program.cover}`)" class="mr-2 ms-4 art-cover">
+        <img v-if="index % 2 == 1" :src="program.cover" class="mr-2 ms-4 art-cover">
     </div>
 </template>
 

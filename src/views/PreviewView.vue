@@ -40,7 +40,10 @@
 import CompProgramItem from '@/components/CompProgramItem.vue';
 import CompEmojiKeyboard from '@/components/Keyboards/CompEmojiKeyboard.vue';
 import modelFormData from '@/models/formdata';
+import { getScheduleByDate, refPrograms } from '@/services/firebase-lib';
 import * as htmlToImage from 'html-to-image';
+import { useCollection } from 'vuefire';
+import programModule from '@/models/programs'
 
 export default {
   name: "PreviewView",
@@ -50,10 +53,83 @@ export default {
   },
   data() {
     return {
-      formData: modelFormData.get(),
+      formData: {
+        name: "",
+        description: "",
+        programs: [],
+      },
+      dateStr: this.$route.query.date ?? null,
+      programs: [],
+      schedules: [],
+      todaySchedules: []
     }
   },
+  mounted() {
+    // You can add any initialization logic here if needed
+    console.log("Session Storage Data:", this.formData); // If data is passed via session
+    
+    if (this.dateStr) {
+      //SWITCH TO DATA FROM CALENDAR
+      const monthStr = this.dateStr.split('-')[0] + '-' + this.dateStr.split('-')[1];
+      useCollection(getScheduleByDate(monthStr)).promise.value.then(vals => {
+        this.schedules = vals;
+
+        this.filterSchedulesToday(this.dateStr);
+        this.convertSchedulesToPrograms(this.todaySchedules);
+        this.formData.description = programModule.generateDescription(this.formData.programs);
+      });
+    }else{
+      //LEGACY FEATURE
+      this.formData = modelFormData.get();
+    }
+  },
+  created() {
+    useCollection(refPrograms).promise.value.then(vals => {
+      this.programs.push(...vals);
+      console.log(this.programs);
+    }).catch(error => {
+      console.log(error);
+    })
+  },
   methods: {
+    filterSchedulesToday(dateStr) {
+      const d = new Date(dateStr);
+      this.schedules.forEach(val => {
+        const start = new Date(val.start);
+        const end = new Date(val.end);
+
+        if (d.getFullYear() == start.getFullYear()
+          && d.getFullYear() == end.getFullYear()
+          && d.getMonth() == start.getMonth()
+          && d.getMonth() == end.getMonth()
+          && d.getDate() >= start.getDate()
+          && d.getDate() <= end.getDate()) {
+          this.todaySchedules.push(val);
+        }
+      });
+    },
+    convertSchedulesToPrograms(schedules) {
+      schedules.forEach(item => {
+        const subTitle = item.title.split(':')[0];
+        const p = this.programs.filter(val => val.title.toLowerCase() == subTitle.toLowerCase())[0] ?? {
+          title: "UNKNOWN PROGRAM",
+          cover: "",
+          color: "#009cff",
+          style: { color: "#009cff" },
+        }
+
+        const start = new Date(item.start);
+        const end = new Date(item.end);
+        const program = {
+          ...p,
+          start: `${start.getHours().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}:${start.getMinutes().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`,
+          end: `${end.getHours().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}:${end.getMinutes().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`,
+          ampm: ''
+        }
+
+        this.formData.programs.push(program);
+      });
+    },
     saveAsImage() {
       //DOCS: https://www.npmjs.com/package/html-to-image
 
@@ -75,10 +151,6 @@ export default {
       console.log('Save as image functionality to be implemented.');
     }
   },
-  mounted() {
-    // You can add any initialization logic here if needed
-    console.log("Session Storage Data:", this.formData); // If data is passed via session
-  }
 };
 </script>
 
