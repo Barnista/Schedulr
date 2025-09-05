@@ -93,13 +93,13 @@ export default {
             return description;
         }
 
-        description = `แชทวันนี้เรามีรายการ live stream\n\n`
+        description = `รายการวันนี้\n\n`
         programs.forEach((program) => {
             description += `${program.start} - ${program.end} (UTC+7): ${program.title} ${program.description ?  '-'+program.description : ''}\n`;
         });
         description += `\nYouTube: www.youtube.com/@barnista27`;
         description += `\nTwitch: www.twitch.tv/barnista27`;
-        description += `\nตารางไลฟ์: barnista-schedulr.web.app/live-schedule`
+        description += `\nตารางไลฟ์: barnista-schedulr.web.app`
 
         return description;
     },
