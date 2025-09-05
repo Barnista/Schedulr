@@ -3,28 +3,31 @@
     <div class="d-flex justify-content-between">
         <div class="form-group text-start me-3">
             <label>Start At: </label>
-            <select v-model="localProgram.start" @change="triggerChange" class="form-select" aria-label="Default select example">
+            <select v-model="localProgram.start" @change="triggerChange" class="form-select"
+                aria-label="Default select example">
                 <option value="" selected>Pick time</option>
                 <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}</option>
             </select>
         </div>
         <div class="form-group text-start me-3">
             <label>End At: </label>
-            <select v-model="localProgram.end" @change="triggerChange" class="form-select" aria-label="Default select example">
+            <select v-model="localProgram.end" @change="triggerChange" class="form-select"
+                aria-label="Default select example">
                 <option value="" selected>Pick time</option>
                 <option v-for="(time, index) in timeranges" :key="index" :value="time">{{ time }}</option>
             </select>
         </div>
-        <div class="form-group text-start me-3">
+        <!--<div class="form-group text-start me-3">
             <label>AM/PM: </label>
             <select v-model="localProgram.ampm" @change="triggerChange" class="form-select" aria-label="Default select example">
                 <option value="" selected>Pick AM/PM</option>
                 <option v-for="(period, index) in ampm" :key="index" :value="period">{{ period }}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group text-start me-3">
             <label>Program: </label>
-            <select v-model="localProgram.program" @change="triggerChange" class="form-select" aria-label="Default select example">
+            <select v-model="localProgram.program" @change="triggerChange" class="form-select"
+                aria-label="Default select example">
                 <option value="" selected>Choose your program</option>
                 <option v-for="(programOption, index) in programs" :key="index" :value="programOption">
                     {{ programOption.title }}

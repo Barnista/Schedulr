@@ -95,7 +95,7 @@ export default {
 
         description = `แชทวันนี้เรามีรายการ live stream\n\n`
         programs.forEach((program) => {
-            description += `${program.start} - ${program.end} (UTC+7): ${program.title}\n`;
+            description += `${program.start} - ${program.end} (UTC+7): ${program.title} ${program.description ?  '-'+program.description : ''}\n`;
         });
         description += `\nYouTube: https://www.youtube.com/@barnista27`;
         description += `\nTwitch: https://www.twitch.tv/barnista27`;

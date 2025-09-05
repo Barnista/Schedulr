@@ -10,8 +10,8 @@
       </div>
       <ul class="list-group mt-3">
         <li v-for="(program, index) in formData.programs" :key="index" class="list-group-item">
-          <CompScheduleItem v-model="formData.programs[index]" :timeranges="timeranges" :ampm="ampm" :programs="programs"
-            @delete-item="deleteItem(index)"></CompScheduleItem>
+          <CompScheduleItem v-model="formData.programs[index]" :timeranges="timeranges" :ampm="ampm"
+            :programs="programs" @delete-item="deleteItem(index)"></CompScheduleItem>
         </li>
       </ul>
       <p v-if="formData.programs.length == 0" class="p-5 text-muted text-center">
@@ -32,8 +32,10 @@
 import CompScheduleItem from "@/components/CompScheduleItem.vue";
 import modelAMPM from "@/models/ampm";
 import modelFormData from "@/models/formdata";
-import modelPrograms from "@/models/programs.js"; // Assuming you have a file with program data
 import modelTimeranges from "@/models/timeranges";
+import { refPrograms } from "@/services/firebase-lib";
+import { useCollection } from "vuefire";
+import programModule from '@/models/programs';
 
 export default {
   name: "MakeScheduleView",
@@ -45,11 +47,21 @@ export default {
       // Initialize the timeranges, ampm, programs, and formData from the imported models
       timeranges: modelTimeranges,
       ampm: modelAMPM,
-      programs: modelPrograms,
+      programs: [],
       formData: modelFormData.get(),
     };
   },
+  created() {
+    this.init();
+  },
   methods: {
+    async init() {
+      try {
+        this.programs = await useCollection(refPrograms).promise.value;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     deleteItem(index) {
       // Remove the program object from the programs array at the specified index
       this.formData.programs.splice(index, 1);
@@ -61,8 +73,10 @@ export default {
     handleSubmit() {
       console.log("Form submitted:", this.formData);
 
+      let xFormData = Object.assign({}, this.formData);
+
       // Validate form data before proceeding
-      const isValid = this.formData.programs.every((program) => {
+      const isValid = xFormData.programs.every((program) => {
         return program.start !== "" && program.end !== "" && program.ampm !== "" && program.program;
       });
 
@@ -71,34 +85,29 @@ export default {
         return;
       }
 
+      //extract program data
+      let programs = [];
+      xFormData.programs.forEach(val => {
+        const nval = {
+          ...val,
+          ...val.program
+        };
+        programs.push(nval);
+      });
+      xFormData.programs = programs;
+
       // Generate description based on the form data
-      this.formData.description = this.generateDescription();
+      xFormData.description = programModule.generateDescription(xFormData.programs);
+
 
       // Save form data to session storage
-      modelFormData.set(this.formData);
+      modelFormData.set(xFormData);
 
       // Redirect to the preview page
       this.$router.push({
         path: '/preview',
       });
-    },
-    generateDescription() {
-      // Generate a description based on the form data
-      let description = ``;
-
-      if (this.formData.programs.length == 0) {
-        description = `แชทวันนี้ไม่มีรายการ live stream\n\n`;
-        description += `เนื่องจาก....`;
-        return description;
-      }
-
-      description = `แชทวันนี้เรามีรายการ live stream\n\n`
-      this.formData.programs.forEach((program) => {
-        description += `${program.start} - ${program.end} ${program.ampm} (UTC+7): ${program.program.title}\n`;
-      });
-      description += `\nดู LIVE: https://www.twitch.tv/barnista27`;
-      return description;
-    },
+    }
   },
 };
 </script>
