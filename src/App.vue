@@ -46,7 +46,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p class="mb-0">v2.4.2 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
+      <p class="mb-0">v2.4.3 © 2025 Schedulr. All Rights Reserved. <router-link to="/about">
           About Us.
         </router-link></p>
     </footer>
@@ -67,7 +67,7 @@ export default {
   methods: {
     async init() {
       this.currentUser = await getCurrentUser();
-      console.log(this.currentUser)
+      //console.log(this.currentUser)
     },
     doSignOut(){
       const auth = getAuth();

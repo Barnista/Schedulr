@@ -77,6 +77,7 @@ export default {
         if (this.dateStr) {
           //SWITCH TO DATA FROM CALENDAR
           const monthStr = this.dateStr.split('-')[0] + '-' + this.dateStr.split('-')[1];
+          //Get schedules from the entire month
           this.schedules = await useCollection(getScheduleByDate(monthStr)).promise.value
           this.todaySchedules = this.filterSchedulesToday(this.schedules, this.dateStr);
           this.formData.programs = this.convertSchedulesToPrograms(this.todaySchedules);
@@ -114,7 +115,7 @@ export default {
         const subTitle = item.title.split(':')[0];
         const subDescription = item.title.split(':')[1];
         const p = this.programs.filter(val => val.title.toLowerCase() == subTitle.toLowerCase())[0] ?? {
-          title: "UNKNOWN PROGRAM",
+          title: subTitle,
           cover: "https://firebasestorage.googleapis.com/v0/b/schedulr-b5fcf.firebasestorage.app/o/programs%2Fcover_justchatting.jpg?alt=media&token=84faa034-5137-47f3-8152-ac81de17e613",
           color: "#009cff",
           style: { color: "#009cff" },
